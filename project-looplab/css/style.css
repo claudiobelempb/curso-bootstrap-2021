@@ -39,3 +39,10 @@ body {
   padding: 5px;
   border-radius: 5px;
 }
+
+#explore-section .fas, #shre-section.fas {
+  color: #FFF;
+  background: #333;
+  padding: 5px;
+  border-radius: 5px;
+}
