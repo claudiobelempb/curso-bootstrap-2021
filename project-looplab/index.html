@@ -20,9 +20,12 @@
     <title>Bootstrap Theme</title>
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#main-nav" id="home">
     <!-- START HERE -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <nav
+      class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"
+      id="main-nav"
+    >
       <div class="container">
         <a href="/" class="navbar-brand">LoopLAB</a>
         <button
@@ -144,7 +147,7 @@
     </section>
 
     <!-- Explore Head -->
-    <section id="explore-read-section">
+    <section id="explore-head-section">
       <div class="container">
         <div class="row">
           <div class="col text-center py-5">
@@ -335,6 +338,82 @@
       </div>
     </section>
 
+    <!-- Footer -->
+    <div id="main-footer" class="bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col text-center py-4">
+            <h3>LoopLAB</h3>
+            <p>Copyright &copy; <span id="year"></span></p>
+            <button
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#contactModal"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Modal -->
+
+    <div class="modal fade text-dark" id="contactModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Contact Us</h5>
+            <button class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="form-control form-control-lg"
+                  placeholder="Name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  name=""
+                  id=""
+                  class="form-control form-control-lg"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  cols="30"
+                  rows="10"
+                  type="text"
+                  name=""
+                  id=""
+                  class="form-control form-control-sm"
+                  placeholder="Message"
+                ></textarea>
+              </div>
+
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-block">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       src="http://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -354,6 +433,27 @@
     <script>
       // Get the current year for the copyright
       $("#year").text(new Date().getFullYear());
+
+      // init scrollspy
+      $("body").scrollspy({ target: "#main-nav" });
+
+      // smoot scrolling
+      $("#main-nav a").on("click", function (event) {
+        if (this.hash !== "") {
+          event.preventDefault();
+          const hash = this.hash;
+
+          $("html, body").animate(
+            {
+              scrollTop: $(hash).offset().top,
+            },
+            800,
+            function () {
+              window.location.hash = hash;
+            }
+          );
+        }
+      });
     </script>
   </body>
 </html>
